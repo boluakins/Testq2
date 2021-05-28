@@ -1,4 +1,5 @@
 using CardDetails.API.CustomAuthentication;
+using CardDetails.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,7 @@ namespace CardDetails.API
             services.AddControllers();
             services.AddAuthentication("CustomAuthentication")
                 .AddScheme<CustomAuthenticationSchemeOptions, CustomAuthenticationHandler>("CustomAuthentication", null);
+            services.AddScoped<ICardSchemeService, CardSchemeService>();
 
         }
 

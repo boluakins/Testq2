@@ -7,9 +7,16 @@ namespace CardDetails.API.Services
 {
     public class CardSchemeService : ICardSchemeService
     {
+
+        /// <summary>
+        ///   Verifies the details of a card
+        /// </summary>
+        /// <param name="cardNumber"></param>
         public VerifyEndpointResponse Verify(string cardNumber)
         {
-            var fetchedFromImaginaryRepo = new VerifyEndpointResponse
+            // retrieves details of the card from the database if card exists
+            // data transfer to dto
+            var data = new VerifyEndpointResponse
             {
                 Success = true,
                 Payload = new VerifyResponseEndpointPayload
@@ -19,11 +26,19 @@ namespace CardDetails.API.Services
                     Bank = "UBS"
                 }
             };
-            return fetchedFromImaginaryRepo;
+            return data;
         }
+
+        /// <summary>
+        ///  Gets the list of hit counts of cards
+        /// </summary>
+        /// <param name="metadata">metadata of the request </param>
         public StatsEndpointResponse Stats(Metadata metadata)
         {
-            var fetchedFromImaginaryRepo = new StatsEndpointResponse
+            // retrieves data from the database
+            // data transfer to dto
+
+            var data = new StatsEndpointResponse
             {
                 Success = true,
                 Start = metadata.Start,
@@ -36,7 +51,7 @@ namespace CardDetails.API.Services
                     { "329802", 1}
                 }
             };
-            return fetchedFromImaginaryRepo;
+            return data;
         }
     }
 }

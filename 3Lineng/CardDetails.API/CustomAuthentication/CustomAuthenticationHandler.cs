@@ -32,6 +32,7 @@ namespace CardDetails.API.CustomAuthentication
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
+            // verify if request contains the required header keys
             if (!Request.Headers.ContainsKey("appKey") || !Request.Headers.ContainsKey("timeStamp") || !Request.Headers.ContainsKey("authorization"))
             {
                 return Task.FromResult(AuthenticateResult.Fail(failureReason));
@@ -39,6 +40,7 @@ namespace CardDetails.API.CustomAuthentication
 
             var authorization = Request.Headers["authorization"].ToString();
 
+            // verify if token can be extracted from authorization string
             if (!authorization.StartsWith("3line ", StringComparison.OrdinalIgnoreCase))
             {
                 return Task.FromResult(AuthenticateResult.Fail(failureReason));
@@ -49,13 +51,16 @@ namespace CardDetails.API.CustomAuthentication
             var timeStamp = Request.Headers["timeStamp"].ToString();
 
             var appKey = configuration["HeaderValues:AppKey"];
+
+            //verify if appKey is correct
             if (appKeyRequest == appKey)
             {
                 var hash = Utilities.GetHash(appKeyRequest + timeStamp);
 
+                //compare hash
                 if (token == hash)
                 {
-                    // generate claimsIdentity on the name of the class
+                    // generate claimsIdentity on the name of the sheme
                     var claimsIdentity = new ClaimsIdentity(Scheme.Name);
                     var ticket = new AuthenticationTicket(
                             new ClaimsPrincipal(claimsIdentity), Scheme.Name);
