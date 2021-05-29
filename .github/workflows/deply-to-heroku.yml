@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build and deploy the Docker image
-      working-directory: ./
+      working-directory: ./3Lineng
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         APP_NAME: ${{ 'test-q2' }}
