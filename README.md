@@ -1,4 +1,5 @@
 # InterviewTest
+dtoaa, commons and services folders were not implemented in separate class libraries due to the nature of the project (simple test project) 
 
 question 2 endpoints
   
