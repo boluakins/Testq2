@@ -1,9 +1,9 @@
 ﻿namespace CardDetails.API.DTOs
 {
-    public class VerifyEndpointResponse
+    public class VerifyEndpointResponse<T>
     {
         public bool Success { get; set; }
-        public VerifyResponseEndpointPayload Payload { get; set; }
+        public T Payload { get; set; }
 
     }
 }

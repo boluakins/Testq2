@@ -18,6 +18,7 @@ namespace CardDetails.API.Controllers
         {
             cardSchemeService = service.GetRequiredService<ICardSchemeService>();
         }
+
         [HttpGet("verify/{cardNumber}")]
         public IActionResult Verify([FromRoute] string cardNumber)
         {
@@ -29,6 +30,13 @@ namespace CardDetails.API.Controllers
         public IActionResult Stats([FromQuery] Metadata metadata)
         {
             var result = cardSchemeService.Stats(metadata);
+            return Ok(result);
+        }
+
+        [HttpGet("verify-optimized/{cardNumber}")]
+        public IActionResult VerifyOptimised([FromRoute] string cardNumber)
+        {
+            var result = cardSchemeService.VerifyOptimized(cardNumber);
             return Ok(result);
         }
     }

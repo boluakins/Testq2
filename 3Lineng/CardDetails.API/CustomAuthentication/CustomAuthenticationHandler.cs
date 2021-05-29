@@ -72,6 +72,7 @@ namespace CardDetails.API.CustomAuthentication
             return Task.FromResult(AuthenticateResult.Fail(failureReason));
         }
 
+        // override this method so as to display failure message
         protected override Task HandleChallengeAsync(AuthenticationProperties properties)
         {
             Response.StatusCode = 401;

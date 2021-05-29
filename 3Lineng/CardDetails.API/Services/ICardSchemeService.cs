@@ -5,7 +5,8 @@ namespace CardDetails.API.Services
 {
     public interface ICardSchemeService
     {
-        VerifyEndpointResponse Verify(string cardNumber);
+        VerifyEndpointResponse<VerifyResponseEndpointPayload> Verify(string cardNumber);
         StatsEndpointResponse Stats(Metadata metadata);
+        VerifyEndpointResponse<VerifyEndPointOptimisedResponsePayload> VerifyOptimized(string cardNumber);
     }
 }
