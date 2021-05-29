@@ -3,7 +3,7 @@ WORKDIR /src
 COPY *.sln .
 
 # copy and restore all projects
-COPY CardDetails.Test/*.csproj CardDetails.Tests/
+COPY CardDetails.Tests/*.csproj CardDetails.Tests/
 COPY CardDetails.API/*.csproj CardDetails.API/
 
 RUN dotnet restore
@@ -17,7 +17,7 @@ WORKDIR /src/CardDetails.API
 
 RUN dotnet build
 
-WORKDIR /src/CardDetails.Test
+WORKDIR /src/CardDetails.Tests
 RUN dotnet test
 
 #Publishing
